@@ -370,7 +370,7 @@ public final class SyncMgr {
             // Request bodies for the remaining headers (which are still a sequential list).
             if (!filtered.isEmpty()) {
                 // Save headers for future bodies requests and matching with the received bodies.
-                syncHeaderRequestManager.storeHeaders(nodeId, filtered);
+                syncHeaderRequestManager.storeHeadersForRequests(nodeId, filtered);
                 syncExecutors.execute(() -> requestBodies(nodeId, displayId));
             }
         }
@@ -432,7 +432,7 @@ public final class SyncMgr {
 
                     if (!filtered.isEmpty()) {
                         // Store the subset that is still useful.
-                        syncHeaderRequestManager.storeHeaders(nodeId, filtered);
+                        syncHeaderRequestManager.storeHeadersForRequests(nodeId, filtered);
                         dispatchBodiedRequestToP2p(nodeId, displayId, filtered);
                     }
                 }
