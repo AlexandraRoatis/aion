@@ -51,6 +51,7 @@ import static org.aion.zero.impl.valid.BlockDetailsValidator.isValidBlock;
 import static org.aion.zero.impl.valid.BlockDetailsValidator.isValidStateRoot;
 import static org.aion.zero.impl.valid.BlockDetailsValidator.isValidTxTrieRoot;
 
+import org.aion.zero.impl.types.MiningBlockHeader;
 import org.aion.zero.impl.valid.AionExtraDataRule;
 import org.aion.zero.impl.valid.BlockHeaderRule;
 import org.aion.zero.impl.valid.BlockHeaderValidator;
@@ -111,7 +112,6 @@ import org.aion.zero.impl.types.RetValidPreBlock;
 import org.aion.zero.impl.valid.StakingDeltaCalculator;
 import org.aion.zero.impl.valid.TXValidator;
 import org.aion.zero.impl.valid.TransactionTypeValidator;
-import org.aion.zero.impl.types.A0BlockHeader;
 import org.aion.base.AionTxExecSummary;
 import org.aion.base.AionTxReceipt;
 import org.apache.commons.collections4.map.LRUMap;
@@ -1194,8 +1194,8 @@ public class AionBlockchainImpl implements IAionBlockchain {
         AionBlock block;
 
         try {
-            A0BlockHeader.Builder headerBuilder =
-                A0BlockHeader.Builder.newInstance()
+            MiningBlockHeader.Builder headerBuilder =
+                MiningBlockHeader.Builder.newInstance()
                     .withParentHash(parent.getHash())
                     .withCoinbase(minerCoinbase)
                     .withNumber(parentHdr.getNumber() + 1)
@@ -2077,7 +2077,7 @@ public class AionBlockchainImpl implements IAionBlockchain {
      *
      * @param blockNumber Identifier of start block, by number
      * @param limit Maximum number of headers in return
-     * @return {@link A0BlockHeader}'s list or empty list if none found
+     * @return {@link MiningBlockHeader}'s list or empty list if none found
      */
     @Override
     public List<BlockHeader> getListOfHeadersStartFrom(long blockNumber, int limit) {

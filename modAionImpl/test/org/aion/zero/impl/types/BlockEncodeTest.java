@@ -2,15 +2,13 @@ package org.aion.zero.impl.types;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.aion.zero.impl.blockchain.BlockchainTestUtils.generateAccounts;
-import static org.aion.zero.impl.types.A0BlockHeader.NONCE_LENGTH;
-import static org.aion.zero.impl.types.A0BlockHeader.SOLUTIONSIZE;
+import static org.aion.zero.impl.types.MiningBlockHeader.NONCE_LENGTH;
+import static org.aion.zero.impl.types.MiningBlockHeader.SOLUTIONSIZE;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import org.aion.base.TransactionTypeRule;
 import org.aion.crypto.ECKey;
-import org.aion.mcf.blockchain.Block;
 import org.aion.mcf.blockchain.BlockHeader.BlockSealType;
 import org.aion.zero.impl.blockchain.BlockchainTestUtils;
 import org.aion.zero.impl.blockchain.StandaloneBlockchain;
@@ -141,8 +139,8 @@ public class BlockEncodeTest {
         assertThat(decodedBlock).isNotNull();
 
         // verify header equality
-        A0BlockHeader expected = miningBlock.getHeader();
-        A0BlockHeader actual = decodedBlock.getHeader();
+        MiningBlockHeader expected = miningBlock.getHeader();
+        MiningBlockHeader actual = decodedBlock.getHeader();
         assertThat(actual.getHash()).isEqualTo(expected.getHash());
         assertThat(actual.getParentHash()).isEqualTo(expected.getParentHash());
         assertThat(actual.getNumber()).isEqualTo(expected.getNumber());
