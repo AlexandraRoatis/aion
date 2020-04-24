@@ -4,7 +4,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.aion.zero.impl.types.MiningBlockHeader.Builder.EMPTY_BLOOM;
 
 import org.aion.crypto.HashUtil;
-import org.aion.mcf.blockchain.BlockHeader.BlockSealType;
+import org.aion.mcf.blockchain.BlockHeader.Seal;
 import org.aion.types.AionAddress;
 import org.aion.util.bytes.ByteUtil;
 import org.junit.Test;
@@ -71,7 +71,7 @@ public class StakingBlockHeaderTest {
         assertThat(header.getSignature()).isEqualTo(SIGNATURE);
         assertThat(header.getSeed()).isEqualTo(SEED);
         assertThat(header.getSigningPublicKey()).isEqualTo(SIGNINGPUBKEY);
-        assertThat(header.getSealType().equals(BlockSealType.SEAL_POW_BLOCK));
+        assertThat(header.getSealType().equals(Seal.PROOF_OF_WORK));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class StakingBlockHeaderTest {
         assertThat(header.getSigningPublicKey()).isEqualTo(ByteUtil.EMPTY_WORD);
         assertThat(header.getSignature()).isEqualTo(new byte[64]);
         assertThat(header.getDifficulty()).isEqualTo(ByteUtil.EMPTY_HALFWORD);
-        assertThat(header.getSealType().equals(BlockSealType.SEAL_POW_BLOCK));
+        assertThat(header.getSealType().equals(Seal.PROOF_OF_WORK));
         assertThat(header.getLogsBloom()).isEqualTo(EMPTY_BLOOM);
     }
 
